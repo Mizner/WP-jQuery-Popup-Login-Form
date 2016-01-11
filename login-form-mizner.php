@@ -34,10 +34,10 @@ add_action( 'wp_footer', 'your_function', 100 );
 // Add Login & Logout
 add_filter( 'wp_nav_menu_items', 'add_loginout_link', 10, 2 );
 function add_loginout_link( $items, $args ) {
-    if (is_user_logged_in() && $args->theme_location == 'primary') {
+    if (is_user_logged_in() && $args->theme_location == 'primary-menu') {
         $items .= '<li><a href="'. wp_logout_url() .'">Logout</a></li>';
     }
-    elseif (!is_user_logged_in() && $args->theme_location == 'primary') {
+    elseif (!is_user_logged_in() && $args->theme_location == 'primary-menu') {
         $items .= '<li><a id="loginLink" href="#">Login</a></li>';
     }
     return $items;
