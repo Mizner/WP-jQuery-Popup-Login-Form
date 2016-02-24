@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Login Form
+Plugin Name: Login Form Mizner
 Description: Creates login link on a menu named "primary" then creates a flexbox popup login form
 Version: 1.0.6
 Author: Michael Mizner
