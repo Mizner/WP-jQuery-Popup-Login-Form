@@ -35,9 +35,9 @@ add_action( 'wp_footer', 'your_function', 100 );
 // Add Login & Logout
 add_filter( 'wp_nav_menu_items', 'add_loginout_link', 10, 2 );
 function add_loginout_link( $items, $args ) {
-	if ( is_user_logged_in() && $args->theme_location == 'primary-menu' ) {
+	if ( is_user_logged_in() && $args->theme_location == 'primary' ) {
 		$items .= '<li><a href="' . wp_logout_url() . '">Logout</a></li>';
-	} elseif ( ! is_user_logged_in() && $args->theme_location == 'primary-menu' ) {
+	} elseif ( ! is_user_logged_in() && $args->theme_location == 'primary' ) {
 		$items .= '<li><a id="loginLink" href="#">Login</a></li>';
 	}
 
@@ -60,19 +60,16 @@ function add_lost_password_link() {
 
 
 function jquery_popup_login_enqueue_script() {
+	// Check is jQuery exists
+	if ( wp_script_is( 'jquery' ) ) {
+		// do nothing
+	} else {
+		wp_enqueue_script( 'jquery' );
+	}
 	// Load Scripts
 	wp_enqueue_style( 'loginFormCSS', plugins_url( 'loginform.css', __FILE__ ) );
 	wp_enqueue_script( 'loginFormJS', plugins_url( 'loginform.js', __FILE__ ) );
-// Check is jQuery exists
-	if ( wp_script_is( 'jquery' ) ) {
 
-		// do nothing
-
-	} else {
-
-		wp_enqueue_script( 'jquery' );
-
-	}
 }
 
 add_action( 'wp_enqueue_scripts', 'jquery_popup_login_enqueue_script' );
